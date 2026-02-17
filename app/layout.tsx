@@ -1,15 +1,19 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Geist } from "next/font/google";
+import localFont from "next/font/local";
 import "./globals.css";
+import styles from "./page.module.css";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const bricolage = localFont({
+  src: "../public/fonts/bricolage/bricolage-variable.ttf",
+  variable: "--font-bricolage",
+  display: "swap",
 });
 
 export const metadata: Metadata = {
@@ -24,8 +28,21 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+      <body className={`${geistSans.variable} ${bricolage.variable}`}>
+        {process.env.NODE_ENV === "development" && (
+          <Script
+            src="https://unpkg.com/@oyerinde/caliper/dist/index.global.js"
+            data-config={JSON.stringify({
+              bridge: { enabled: true }
+            })}
+            strategy="afterInteractive"
+          />
+        )}
+        <div className={styles.page}>
+          <main className={styles.main}>
+            {children}
+          </main>
+        </div>
       </body>
     </html>
   );

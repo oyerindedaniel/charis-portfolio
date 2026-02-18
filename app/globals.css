@@ -3,7 +3,9 @@
   --foreground: #111111;
   --text-primary: #1a1a1a;
   --text-primary-rgb: 26, 26, 26;
-  --text-secondary: #555555;
+  --text-secondary: #666666;
+  --accent-bright: #ff4d00;
+
   --border: #111111;
 
   --btn-highlight: rgba(255, 255, 255, 0.9);
@@ -34,7 +36,8 @@
     --foreground: #e5e5e5;
     --text-primary: #e5e5e5;
     --text-primary-rgb: 229, 229, 229;
-    --text-secondary: #a0a0a0;
+    --text-secondary: #888888;
+    --accent-bright: #ff5500;
     --border: #e5e5e5;
 
     --btn-highlight: rgba(255, 255, 255, 0.2);
@@ -72,6 +75,13 @@ body {
   font-family: var(--font-geist-sans);
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.highlight {
+  color: var(--accent-bright);
+  font-weight: 500;
+  transition: color 0.2s ease;
 }
 
 h1,
@@ -184,4 +194,16 @@ a {
   transform: translateY(1px);
   box-shadow: inset 0 0.5px 0 0 var(--btn-highlight),
     inset 0 -0.5px 0 0 var(--btn-shadow-inset);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
 }

@@ -23,7 +23,7 @@ export function SpotifyPlayer() {
                     className={styles.iframe}
                     src="https://open.spotify.com/embed/playlist/3LQccQTuWkzv35NcMS3yKG?utm_source=generator"
                     width="100%"
-                    height="152"
+                    height="352"
                     allowFullScreen
                     allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture"
                     loading="lazy"

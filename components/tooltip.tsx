@@ -43,8 +43,14 @@ export function Tooltip({ content, disabled, children }: TooltipProps) {
     };
 
     useEffect(() => {
+        const forceHide = () => handleLeave();
+        window.addEventListener("blur", forceHide);
+        window.addEventListener("contextmenu", forceHide);
+
         return () => {
             if (timerRef.current) clearTimeout(timerRef.current);
+            window.removeEventListener("blur", forceHide);
+            window.removeEventListener("contextmenu", forceHide);
         };
     }, []);
 

@@ -1,73 +1,58 @@
-"use client";
-
-import { useRef, useEffect, useCallback } from "react";
-import { useRouter, useParams } from "next/navigation";
-import type { CameraControls } from "@react-three/drei";
-import { ProjectViewer } from "@/components/project-viewer";
-import { ViewpointsPanel } from "@/components/viewpoints-panel";
-import { useFocusTrap } from "@/hooks/use-focus-trap";
-import { motion } from "motion/react";
-import styles from "./project-details.module.css";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { projects } from "@/constants/projects";
+import { siteConfig } from "@/config/site";
+import { ProjectDetailsClient } from "./project-details-client";
 
-export default function ProjectDetails() {
-    const router = useRouter();
-    const params = useParams();
-    const projectId = params.id as string;
-    const project = projects.find((item) => item.id === projectId);
+interface Props {
+    params: Promise<{ id: string }>;
+}
 
-    const { containerRef, handleFocusBefore, handleFocusAfter } = useFocusTrap();
+export async function generateStaticParams() {
+    return projects.map((project) => ({
+        id: project.id,
+    }));
+}
 
-    const cameraControlsRef = useRef<CameraControls | null>(null);
+export async function generateMetadata({ params }: Props): Promise<Metadata> {
+    const { id } = await params;
+    const currentProject = projects.find((project) => project.id === id);
 
-    useEffect(() => {
-        const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.key === "Escape") router.back();
+    if (!currentProject) {
+        return {
+            title: "Project Not Found",
         };
-        window.addEventListener("keydown", handleKeyDown);
-        return () => window.removeEventListener("keydown", handleKeyDown);
-    }, [router]);
+    }
 
-    if (!project) return null;
+    const title = `${currentProject.title} | ${siteConfig.name}`;
+    const description = currentProject.description;
+    const ogImage = `${siteConfig.url}/api/og?title=${encodeURIComponent(currentProject.title)}`;
 
-    return (
-        <motion.div
-            className={styles.page}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            ref={containerRef}
-            role="dialog"
-            aria-modal="true"
-        >
-            <div tabIndex={0} onFocus={handleFocusBefore} aria-hidden="true" />
+    return {
+        title,
+        description,
+        openGraph: {
+            title,
+            description,
+            images: [{ url: ogImage, width: 1200, height: 630 }],
+            type: "website",
+        },
+        twitter: {
+            card: "summary_large_image",
+            title,
+            description,
+            images: [ogImage],
+        },
+    };
+}
 
-            <div className={styles.canvas_container}>
-                <ProjectViewer
-                    objPath={project.objPath}
-                    mtlPath={project.mtlPath}
-                    cameraControlsRef={cameraControlsRef}
-                    showAxes={true}
-                />
-            </div>
+export default async function ProjectPage({ params }: Props) {
+    const { id } = await params;
+    const currentProject = projects.find((project) => project.id === id);
 
-            <div className={styles.overlay}>
-                <motion.div className={styles.info_panel}>
-                    <button
-                        className="btn-secondary"
-                        onClick={() => router.back()}
-                        aria-label="Back to home"
-                    >
-                        Back to Home
-                    </button>
-                </motion.div>
-            </div>
+    if (!currentProject) {
+        notFound();
+    }
 
-            <div className={styles.viewpoints_anchor}>
-                <ViewpointsPanel cameraControlsRef={cameraControlsRef} />
-            </div>
-
-            <div tabIndex={0} onFocus={handleFocusAfter} aria-hidden="true" />
-        </motion.div>
-    );
+    return <ProjectDetailsClient project={currentProject} />;
 }

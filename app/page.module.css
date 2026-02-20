@@ -15,7 +15,7 @@
   align-items: flex-start;
   justify-content: space-between;
   background-color: var(--background);
-  padding: 120px 60px;
+  padding: 120px 60px 0;
 }
 
 .intro {
@@ -35,7 +35,7 @@
 
 .intro h1 {
   max-width: 320px;
-  font-size: 40px;
+  font-size: 36px;
   font-weight: 600;
   line-height: 1.2;
   letter-spacing: -0.06em;
@@ -60,6 +60,7 @@
 
 .actions {
   display: flex;
+  flex-wrap: wrap;
   gap: 12px;
   margin-top: 8px;
   align-items: center;
@@ -103,17 +104,19 @@
 
 @media (max-width: 600px) {
   .main {
-    padding: 48px 24px;
+    padding: 48px 20px 0;
   }
 
   .intro {
     gap: 16px;
+    width: 100%;
   }
 
   .intro h1 {
     font-size: 32px;
     line-height: 1.25;
     letter-spacing: -0.06em;
+    max-width: 100%;
   }
 
   .intro_text {
@@ -122,9 +125,14 @@
     max-width: 100%;
   }
 
+  .actions {
+    gap: 8px;
+  }
+
   .grid {
     grid-template-columns: 1fr;
     gap: 16px;
+    width: 100%;
   }
 }
 

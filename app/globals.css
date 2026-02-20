@@ -40,6 +40,11 @@
   --switch-thumb-highlight: rgba(255, 255, 255, 1);
   --switch-icon-active: #1a1a1a;
   --switch-icon-inactive: rgba(0, 0, 0, 0.3);
+
+  --panel-bg: #f0f0f0;
+  --panel-border: var(--gray-300);
+  --panel-shadow: rgba(0, 0, 0, 0.2);
+  --panel-inset-highlight: rgba(255, 255, 255, 0.6);
 }
 
 .dark {
@@ -83,6 +88,11 @@
   --switch-thumb-highlight: rgba(255, 255, 255, 0.3);
   --switch-icon-active: #e5e5e5;
   --switch-icon-inactive: rgba(255, 255, 255, 0.25);
+
+  --panel-bg: #1a1a1a;
+  --panel-border: var(--gray-400);
+  --panel-shadow: rgba(0, 0, 0, 0.5);
+  --panel-inset-highlight: rgba(255, 255, 255, 0.06);
 }
 
 html,

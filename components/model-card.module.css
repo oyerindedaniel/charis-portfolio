@@ -9,17 +9,21 @@
     position: relative;
     display: flex;
     flex-direction: column;
-    background: var(--background);
-    border: 1px solid var(--gray-200);
+    background: linear-gradient(145deg, var(--background), var(--gray-100));
     border-radius: 12px;
     padding: 16px;
     gap: 16px;
     transition: all 0.4s cubic-bezier(0.2, 0.8, 0.2, 1);
-    background: linear-gradient(145deg, var(--background), var(--gray-100));
+}
+
+@supports (corner-shape: squircle) {
+    .card {
+        border-radius: 20px;
+        corner-shape: squircle;
+    }
 }
 
 .card:hover {
-    border-color: var(--gray-400);
     box-shadow:
         0 12px 32px -8px var(--shadow-color),
         0 0 0 1px var(--gray-300);
@@ -32,10 +36,16 @@
     background: var(--gray-100);
     border-radius: 8px;
     overflow: hidden;
-    border: 1px solid var(--gray-200);
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+@supports (corner-shape: squircle) {
+    .visual_section {
+        border-radius: 12px;
+        corner-shape: squircle;
+    }
 }
 
 .image_frame {
@@ -59,8 +69,8 @@
 }
 
 .thumbnail {
-    width: 80%;
-    height: 80%;
+    width: 100%;
+    height: 100%;
     background-image: var(--bg-light);
     background-size: contain;
     background-position: center;

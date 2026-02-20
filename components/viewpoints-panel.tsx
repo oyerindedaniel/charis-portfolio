@@ -59,9 +59,9 @@ interface ViewpointsPanelProps {
 }
 
 const btnGroupVariants = {
-    enter: { rotate: 60, rotateX: -12, rotateY: 15, opacity: 0, scale: 0.85 },
-    center: { rotate: 0, rotateX: -3, rotateY: 2, opacity: 1, scale: 1 },
-    exit: { rotate: -60, rotateX: 8, rotateY: -12, opacity: 0, scale: 0.85 },
+    enter: { rotate: 60, rotateX: -12, rotateY: 15, opacity: 0, scale: 0.85, pointerEvents: "none" as const },
+    center: { rotate: 0, rotateX: 0, rotateY: 0, opacity: 1, scale: 1, pointerEvents: "auto" as const },
+    exit: { rotate: -60, rotateX: 8, rotateY: -12, opacity: 0, scale: 0.85, pointerEvents: "none" as const },
 };
 
 export function ViewpointsPanel({ cameraControlsRef }: ViewpointsPanelProps) {
@@ -76,6 +76,10 @@ export function ViewpointsPanel({ cameraControlsRef }: ViewpointsPanelProps) {
     const neighbors = ADJACENCY[activeView];
 
     const goTo = useCallback((targetView: ViewKey, slot: string) => {
+        if (document.activeElement instanceof HTMLElement) {
+            document.activeElement.blur();
+        }
+
         flushSync(() => setTooltipsDisabled(true));
 
         const currentX = VIEWS[activeView].cubeX;

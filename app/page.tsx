@@ -8,6 +8,8 @@ import { projects } from "@/constants/projects";
 import { preloadModel } from "@/components/project-scene";
 import { ThemeSwitch } from "@/components/theme-switch";
 import { SpotifyPlayer } from "@/components/spotify-player";
+import { Footer } from "@/components/footer";
+import { socialLinks } from "@/constants/social";
 
 projects.forEach(project => preloadModel(project.objPath, project.mtlPath));
 
@@ -70,29 +72,29 @@ export default function Home() {
           }}
         >
           <a
-            href="http://linkedin.com/in/charis-oyerinde-1516521a9"
+            href={socialLinks.linkedin.href}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary"
           >
-            <img src="/linkedin.png" alt="LinkedIn Profile" className={styles.icon} />
-            LinkedIn
+            <img src={socialLinks.linkedin.icon} alt="LinkedIn Profile" className={styles.icon} />
+            {socialLinks.linkedin.label}
           </a>
           <a
-            href="/oyerinde-charis-cv.pdf"
+            href={socialLinks.resume.href}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-secondary"
           >
-            <img src="/resume.png" alt="Download Resume" className={styles.icon} />
-            Resume
+            <img src={socialLinks.resume.icon} alt="Download Resume" className={styles.icon} />
+            {socialLinks.resume.label}
           </a>
           <a
-            href="mailto:charisoyerinde@yahoo.com"
+            href={socialLinks.email.href}
             className="btn-secondary"
           >
-            <img src="/email.png" alt="Send Email" className={styles.icon} />
-            Email
+            <img src={socialLinks.email.icon} alt="Send Email" className={styles.icon} />
+            {socialLinks.email.label}
           </a>
         </motion.div>
       </LayoutGroup>
@@ -121,6 +123,8 @@ export default function Home() {
       </section>
 
       <SpotifyPlayer />
+
+      <Footer />
     </div>
   );
 }

@@ -8,12 +8,15 @@ import { SceneErrorBoundary } from "./scene-error-boundary";
 import { ProjectScene } from "./project-scene";
 import { Loader } from "./loader";
 import styles from "./project-viewer.module.css";
+import type { MaterialPresetKey } from "@/constants/materials";
 
 interface ProjectViewerProps {
     objPath: string;
     mtlPath: string;
     cameraControlsRef: React.RefObject<CameraControls | null>;
     showAxes?: boolean;
+    showGrid?: boolean;
+    materialPreset?: MaterialPresetKey;
 }
 
 export function ProjectViewer({
@@ -21,11 +24,15 @@ export function ProjectViewer({
     mtlPath,
     cameraControlsRef,
     showAxes = false,
+    showGrid = false,
+    materialPreset = "steel",
 }: ProjectViewerProps) {
-    const modelGroupRef = useRef<THREE.Group>(null);
+    const modelGroupRef = useRef<THREE.Group | null>(null);
     const [fitted, setFitted] = useState(false);
 
     useEffect(() => {
+        if (!fitted) return;
+
         const handleResize = () => {
             const controls = cameraControlsRef.current;
             const group = modelGroupRef.current;
@@ -33,11 +40,9 @@ export function ProjectViewer({
             controls.fitToBox(group, false);
         };
 
-        if (fitted) {
-            window.addEventListener("resize", handleResize);
-        }
+        window.addEventListener("resize", handleResize);
         return () => window.removeEventListener("resize", handleResize);
-    }, [fitted, cameraControlsRef, modelGroupRef]);
+    }, [fitted]);
 
     const handleCreated = useCallback((state: { gl: { domElement: HTMLCanvasElement } }) => {
         const canvas = state.gl.domElement;
@@ -48,7 +53,7 @@ export function ProjectViewer({
     }, []);
 
     const handleModelReady = useCallback((group: THREE.Group) => {
-        (modelGroupRef as React.RefObject<THREE.Group>).current = group;
+        modelGroupRef.current = group;
         const controls = cameraControlsRef.current;
         if (!controls) return;
 
@@ -71,6 +76,8 @@ export function ProjectViewer({
                             objPath={objPath}
                             mtlPath={mtlPath}
                             showAxes={showAxes}
+                            showGrid={showGrid}
+                            materialPreset={materialPreset}
                             onReady={handleModelReady}
                         />
                         <CameraControls

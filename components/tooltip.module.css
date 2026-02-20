@@ -1,0 +1,41 @@
+.container {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.content {
+    position: absolute;
+    bottom: calc(100% + 8px);
+    left: 50%;
+    pointer-events: none;
+    z-index: 100;
+}
+
+.tooltip {
+    background: var(--tooltip-bg);
+    color: var(--tooltip-text);
+    padding: 6px 10px;
+    border-radius: 8px;
+    font-size: 10px;
+    font-weight: 700;
+    white-space: nowrap;
+    box-shadow: 0 8px 24px -12px var(--shadow-color);
+    letter-spacing: 0.04em;
+    font-family: var(--font-geist-sans);
+    border: 1px solid var(--tooltip-border);
+    text-transform: uppercase;
+}
+
+.arrow {
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 0;
+    height: 0;
+    border-left: 5px solid transparent;
+    border-right: 5px solid transparent;
+    border-top: 5px solid var(--tooltip-bg);
+}

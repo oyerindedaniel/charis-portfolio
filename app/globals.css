@@ -28,6 +28,10 @@
   --gray-700: #616161;
   --gray-800: #424242;
   --gray-900: #212121;
+
+  --tooltip-bg: rgba(26, 26, 26, 0.95);
+  --tooltip-border: rgba(255, 255, 255, 0.12);
+  --tooltip-text: #fcfcfc;
 }
 
 @media (prefers-color-scheme: dark) {
@@ -60,6 +64,10 @@
     --gray-700: #a0a0a0;
     --gray-800: #c2c2c2;
     --gray-900: #e5e5e5;
+
+    --tooltip-bg: rgba(229, 229, 229, 0.95);
+    --tooltip-border: rgba(0, 0, 0, 0.1);
+    --tooltip-text: #0d0d0d;
   }
 }
 
@@ -104,6 +112,12 @@ a {
   text-decoration: none;
 }
 
+.fill-screen {
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+}
+
 @media (prefers-color-scheme: dark) {
   html {
     color-scheme: dark;
@@ -121,7 +135,6 @@ a {
   font-family: var(--font-geist-sans);
   font-weight: 700;
   font-size: 13px;
-  text-transform: lowercase;
   letter-spacing: -0.01em;
   cursor: pointer;
   border-radius: 9999px;
@@ -160,12 +173,10 @@ a {
   justify-content: center;
   padding: 10px 24px;
   background: var(--gray-100);
-  border: 1px solid var(--border);
   color: var(--text-primary);
   font-family: var(--font-geist-sans);
   font-weight: 500;
   font-size: 13px;
-  text-transform: lowercase;
   letter-spacing: -0.01em;
   cursor: pointer;
   position: relative;

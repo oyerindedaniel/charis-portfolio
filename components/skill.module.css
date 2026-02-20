@@ -1,10 +1,10 @@
 .skill_trigger {
     display: inline-block;
-    vertical-align: -0.025em;
+    vertical-align: baseline;
     line-height: inherit;
     cursor: pointer;
     white-space: nowrap;
-    padding: 0 3.89px;
+    margin: 0 3.89px;
     transition: all 0.2s cubic-bezier(0.3, 0, 0, 1);
 }
 

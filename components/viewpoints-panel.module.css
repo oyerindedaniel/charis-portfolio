@@ -1,0 +1,158 @@
+.panel {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 14px;
+    background: rgba(var(--text-primary-rgb), 0.03);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    border: 1px solid var(--gray-200);
+    border-radius: 20px;
+    user-select: none;
+    box-shadow: 0 4px 24px -12px var(--shadow-color);
+}
+
+.dpad {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    perspective: 600px;
+}
+
+.btn_grid {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px;
+    position: relative;
+    z-index: 2;
+}
+
+.row {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+}
+
+.btn {
+    appearance: none;
+    border: none;
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: var(--gray-100);
+    border: 1px solid var(--button-secondary-border);
+    color: var(--text-primary);
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.2s cubic-bezier(0.3, 0, 0, 1),
+        box-shadow 0.2s cubic-bezier(0.3, 0, 0, 1);
+    box-shadow: inset 0 1px 0 0 var(--btn-highlight),
+        inset 0 -2px 0 0 var(--btn-shadow-inset);
+    will-change: transform;
+}
+
+.btn:hover {
+    background: var(--gray-200);
+    color: var(--accent-bright);
+    box-shadow: inset 0 1px 0 0 var(--btn-highlight),
+        inset 0 -2px 0 0 var(--btn-shadow-inset),
+        0 4px 12px -4px var(--shadow-color);
+}
+
+.btn:active {
+    background: var(--gray-300);
+    box-shadow: inset 0 0.5px 0 0 var(--btn-highlight),
+        inset 0 -0.5px 0 0 var(--btn-shadow-inset);
+}
+
+.btn:focus-visible {
+    outline: 2px solid var(--accent-bright);
+    outline-offset: 2px;
+}
+
+.cube_spacer {
+    width: 40px;
+    height: 40px;
+}
+
+.cube_overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    pointer-events: none;
+    z-index: 1;
+}
+
+.cube_scene {
+    width: 40px;
+    height: 40px;
+    perspective: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.cube {
+    width: 24px;
+    height: 24px;
+    position: relative;
+    transform-style: preserve-3d;
+}
+
+.face {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 7px;
+    font-weight: 700;
+    letter-spacing: 0.04em;
+    background: var(--gray-200);
+    border: 1px solid var(--gray-300);
+    color: var(--text-secondary);
+    border-radius: 3px;
+    backdrop-filter: blur(4px);
+}
+
+.face_front {
+    transform: translateZ(12px);
+}
+
+.face_back {
+    transform: rotateY(180deg) translateZ(12px);
+}
+
+.face_right {
+    transform: rotateY(90deg) translateZ(12px);
+}
+
+.face_left {
+    transform: rotateY(-90deg) translateZ(12px);
+}
+
+.face_top {
+    transform: rotateX(90deg) translateZ(12px);
+    background: var(--gray-100);
+}
+
+.face_bottom {
+    transform: rotateX(-90deg) translateZ(12px);
+    background: var(--gray-300);
+}
+
+.panel:hover .face_front,
+.panel:hover .face_right,
+.panel:hover .face_left,
+.panel:hover .face_back,
+.panel:hover .face_top,
+.panel:hover .face_bottom {
+    border-color: var(--gray-400);
+}

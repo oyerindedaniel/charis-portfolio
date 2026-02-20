@@ -10,6 +10,8 @@ interface SkillProps {
 }
 
 const iconMap: Record<string, string> = {
+    "Mechatronics engineering student": "/student.png",
+    "Robot Operating System": "/ros.png",
     "Fusion 360": "/cad.png",
     "Python": "/python.png",
     "MATLAB": "/matlab.png",

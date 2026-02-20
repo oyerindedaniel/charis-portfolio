@@ -1,14 +1,13 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
-import { Suspense, useEffect } from "react";
+import { useRef, useEffect, useCallback } from "react";
 import { useRouter, useParams } from "next/navigation";
-import { ProjectScene } from "@/components/project-scene";
-import { CreativeLoader } from "@/components/creative-loader";
+import type { CameraControls } from "@react-three/drei";
+import { ProjectViewer } from "@/components/project-viewer";
+import { ViewpointsPanel } from "@/components/viewpoints-panel";
 import { useFocusTrap } from "@/hooks/use-focus-trap";
 import { motion } from "motion/react";
 import styles from "./project-details.module.css";
-
 import { projects } from "@/constants/projects";
 
 export default function ProjectDetails() {
@@ -16,13 +15,14 @@ export default function ProjectDetails() {
     const params = useParams();
     const projectId = params.id as string;
     const project = projects.find((item) => item.id === projectId);
+
     const { containerRef, handleFocusBefore, handleFocusAfter } = useFocusTrap();
+
+    const cameraControlsRef = useRef<CameraControls | null>(null);
 
     useEffect(() => {
         const handleKeyDown = (event: KeyboardEvent) => {
-            if (event.key === "Escape") {
-                router.back();
-            }
+            if (event.key === "Escape") router.back();
         };
         window.addEventListener("keydown", handleKeyDown);
         return () => window.removeEventListener("keydown", handleKeyDown);
@@ -43,22 +43,17 @@ export default function ProjectDetails() {
             <div tabIndex={0} onFocus={handleFocusBefore} aria-hidden="true" />
 
             <div className={styles.canvas_container}>
-                <Suspense fallback={<CreativeLoader />}>
-                    <Canvas camera={{ position: [5, 5, 5], fov: 45 }}>
-                        <ProjectScene
-                            objPath="/iso/iso1.obj"
-                            mtlPath="/iso/iso1.mtl"
-                            scale={0.03}
-                        />
-                    </Canvas>
-                </Suspense>
+                <ProjectViewer
+                    objPath={project.objPath}
+                    mtlPath={project.mtlPath}
+                    cameraControlsRef={cameraControlsRef}
+                    showAxes={true}
+                />
             </div>
 
+
             <div className={styles.overlay}>
-                <motion.div
-                    className={styles.info_panel}
-                    layoutId={projectId}
-                >
+                <motion.div className={styles.info_panel}>
                     <button
                         className="btn-secondary"
                         onClick={() => router.back()}
@@ -68,10 +63,16 @@ export default function ProjectDetails() {
                     </button>
                     <div className={styles.description_box}>
                         <p className={styles.short_desc}>
-                            Technical breakdown of the {project.title} assembly. Designed and simulated for industrial mechatronics systems.
+                            Technical breakdown of the {project.title} assembly.
+                            Designed and simulated for industrial mechatronics systems.
                         </p>
                     </div>
                 </motion.div>
+            </div>
+
+
+            <div className={styles.viewpoints_anchor}>
+                <ViewpointsPanel cameraControlsRef={cameraControlsRef} />
             </div>
 
             <div tabIndex={0} onFocus={handleFocusAfter} aria-hidden="true" />

@@ -1,44 +1,44 @@
 "use client";
 
-import { Canvas } from "@react-three/fiber";
-import { Suspense } from "react";
+import Link from "next/link";
 import { motion } from "motion/react";
-import { ProjectScene } from "./project-scene";
-import { CreativeLoader } from "./creative-loader";
 import styles from "./model-card.module.css";
 
 interface ModelCardProps {
     id: string;
     title: string;
     description: string;
-    layoutId: string;
 }
 
-export const ModelCard = ({ id, title, description, layoutId }: ModelCardProps) => {
+export const ModelCard = ({ id, title, description }: ModelCardProps) => {
+    const lightImg = `/iso/${id}-light.png`;
+    const darkImg = `/iso/${id}-dark.png`;
+
     return (
-        <motion.div
-            layoutId={layoutId}
-            className={styles.card}
-            whileHover={{ y: -4 }}
-            role="article"
-            aria-label={`Project: ${title}`}
-        >
-            <div className={styles.preview_container}>
-                <div className={styles.canvas_wrapper}>
-                    <Suspense fallback={<CreativeLoader />}>
-                        <Canvas camera={{ position: [0, 0, 5], fov: 45 }}>
-                            <ProjectScene
-                                objPath="/iso/iso1.obj"
-                                mtlPath="/iso/iso1.mtl"
-                            />
-                        </Canvas>
-                    </Suspense>
+        <Link href={`/project/${id}`} className={styles.card_link} draggable={false}>
+            <motion.article
+                className={styles.card}
+                whileHover={{ y: -2 }}
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4, ease: "easeOut" }}
+                style={{
+                    "--bg-light": `url(${lightImg})`,
+                    "--bg-dark": `url(${darkImg})`,
+                } as any}
+            >
+                <div className={styles.content}>
+                    <h3 className={styles.title}>{title}</h3>
+                    <p className={styles.description}>{description}</p>
                 </div>
-            </div>
-            <div className={styles.content}>
-                <h3 className={styles.title}>{title}</h3>
-                <p className={styles.description}>{description}</p>
-            </div>
-        </motion.div>
+
+                <div className={styles.footer}>
+                    <span className={styles.view_text}>Explore Project</span>
+                    <svg className={styles.arrow} width="14" height="14" viewBox="0 0 16 16" fill="none">
+                        <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                </div>
+            </motion.article>
+        </Link>
     );
 };

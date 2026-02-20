@@ -1,76 +1,157 @@
+.card_link {
+    text-decoration: none;
+    color: inherit;
+    display: block;
+    width: 100%;
+}
+
 .card {
     display: flex;
     flex-direction: column;
+    padding: 24px 32px;
     background: var(--background);
     border: 1px solid var(--gray-200);
-    border-radius: 20px;
+    border-radius: 2px;
+    transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+    position: relative;
     overflow: hidden;
-    cursor: pointer;
-    transition: box-shadow 0.2s cubic-bezier(0.3, 0, 0, 1), border-color 0.2s;
-    width: 100%;
+    min-height: 140px;
+    justify-content: center;
+}
+
+.card::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    right: -20px;
+    transform: translateY(-50%);
+    width: 240px;
+    height: 100%;
+    background-image: var(--bg-light);
+    background-size: contain;
+    background-position: center right;
+    background-repeat: no-repeat;
+    opacity: 0.8;
+    pointer-events: none;
+    transition: transform 0.4s cubic-bezier(0.2, 0.8, 0.2, 1), opacity 0.3s ease;
+    z-index: 0;
+    filter: grayscale(0.2) contrast(1.1);
+}
+
+@media (prefers-color-scheme: dark) {
+    .card::after {
+        background-image: var(--bg-dark);
+        opacity: 0.6;
+        filter: invert(1) brightness(1.2) contrast(1.1);
+    }
+}
+
+.card:hover::after {
+    transform: translateY(-50%) scale(1.05) translateX(-10px);
+    opacity: 1;
+}
+
+.card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 2px;
+    height: 0;
+    background: var(--accent-bright);
+    transition: height 0.3s ease;
+    z-index: 2;
 }
 
 .card:hover {
-    border-color: transparent;
-    box-shadow: 0 0 0 2px var(--accent-bright);
+    border-color: var(--gray-300);
+    box-shadow: 0 8px 24px -12px rgba(0, 0, 0, 0.1);
 }
 
-.preview_container {
-    padding: 12px;
-    width: 100%;
-}
-
-.canvas_wrapper {
-    aspect-ratio: 16 / 10;
-    background: var(--gray-100);
-    border-radius: 12px;
-    overflow: hidden;
-    position: relative;
-    border: 1px solid var(--gray-200);
+.card:hover::before {
+    height: 100%;
 }
 
 .content {
-    padding: 16px 20px 20px 20px;
+    position: relative;
+    z-index: 1;
+    margin-bottom: 12px;
+    max-width: 65%;
 }
 
 .title {
-    font-family: var(--font-geist-sans);
-    font-size: 14px;
+    font-family: var(--font-bricolage);
+    font-size: 17px;
     font-weight: 600;
     color: var(--text-primary);
-    margin-bottom: 4px;
-    text-transform: uppercase;
-    letter-spacing: 0.02em;
+    margin-bottom: 6px;
+    letter-spacing: -0.01em;
 }
 
 .description {
     font-family: var(--font-geist-sans);
     font-size: 13px;
-    color: var(--text-secondary);
     line-height: 1.5;
+    color: var(--text-secondary);
+    opacity: 0.75;
 }
 
-.loader {
-    width: 100%;
-    height: 100%;
-    background: var(--gray-100);
+.footer {
+    position: relative;
+    z-index: 1;
     display: flex;
     align-items: center;
-    justify-content: center;
+    gap: 6px;
+    margin-top: auto;
+    opacity: 0.4;
+    transition: all 0.3s ease;
 }
 
-@media (prefers-color-scheme: dark) {
+.card:hover .footer {
+    opacity: 0.9;
+    gap: 10px;
+    color: var(--accent-bright);
+}
+
+.view_text {
+    font-family: var(--font-geist-sans);
+    font-size: 10px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.arrow {
+    transform: translateX(0);
+    transition: transform 0.3s ease;
+    vertical-align: baseline;
+}
+
+.card:hover .arrow {
+    transform: translateX(3px);
+}
+
+@media (max-width: 600px) {
     .card {
-        border-color: var(--gray-200);
-        background: var(--background);
+        padding: 20px 24px;
+        min-height: 160px;
     }
 
-    .canvas_wrapper {
-        background: var(--gray-100);
-        border-color: var(--gray-200);
+    .card::after {
+        width: 180px;
+        right: -30px;
+        opacity: 0.4;
     }
 
-    .loader {
-        background: var(--gray-100);
+    .content {
+        max-width: 80%;
+    }
+
+    .title {
+        font-size: 16px;
+    }
+
+    .description {
+        font-size: 13px;
     }
 }

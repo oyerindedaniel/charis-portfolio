@@ -33,15 +33,15 @@
   width: 100%;
 }
 
-.intro h1 {
-  max-width: 320px;
+.title_h1 {
+  max-width: 420px;
   font-size: 36px;
   font-weight: 600;
-  line-height: 1.2;
+  line-height: 1;
   letter-spacing: -0.06em;
-  text-wrap: balance;
   color: var(--text-primary);
   font-family: var(--font-bricolage);
+  margin: 0;
 }
 
 .intro_text {
@@ -72,12 +72,6 @@
   margin-right: 8px;
   display: inline-block;
   vertical-align: middle;
-}
-
-@media (prefers-color-scheme: dark) {
-  /* .icon {
-    filter: invert(1);
-  } */
 }
 
 .grid_section {
@@ -112,9 +106,9 @@
     width: 100%;
   }
 
-  .intro h1 {
+  .title_h1 {
     font-size: 32px;
-    line-height: 1.25;
+    line-height: 1;
     letter-spacing: -0.06em;
     max-width: 100%;
   }

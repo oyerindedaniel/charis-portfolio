@@ -23,10 +23,34 @@
     }
 }
 
-.card:hover {
-    box-shadow:
-        0 12px 32px -8px var(--shadow-color),
-        0 0 0 1px var(--gray-300);
+@media (hover: hover) and (pointer: fine) {
+    .card:hover {
+        box-shadow:
+            0 12px 32px -8px var(--shadow-color),
+            0 0 0 1px var(--gray-300);
+    }
+
+    .card:hover .thumbnail {
+        transform: scale(1.1) translateY(-4px);
+    }
+
+    .card:hover .action {
+        color: var(--text-primary);
+    }
+
+    .card:hover .arrow_wrap {
+        background: var(--foreground);
+        border-color: var(--foreground);
+        color: var(--background);
+        transform: translateX(4px);
+    }
+
+    .card:hover .corner {
+        border-color: var(--accent-bright);
+        opacity: 1;
+        width: 12px;
+        height: 12px;
+    }
 }
 
 .visual_section {
@@ -57,6 +81,16 @@
     justify-content: center;
 }
 
+.loader_overlay {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 5;
+    background: var(--gray-100);
+}
+
 .grid_overlay {
     position: absolute;
     inset: 0;
@@ -84,9 +118,7 @@
     filter: invert(1) brightness(1.2) contrast(1.1);
 }
 
-.card:hover .thumbnail {
-    transform: scale(1.1) translateY(-4px);
-}
+
 
 .tag {
     position: absolute;
@@ -185,16 +217,7 @@
     transition: all 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.card:hover .action {
-    color: var(--text-primary);
-}
 
-.card:hover .arrow_wrap {
-    background: var(--foreground);
-    border-color: var(--foreground);
-    color: var(--background);
-    transform: translateX(4px);
-}
 
 .corner {
     position: absolute;
@@ -222,12 +245,7 @@
     border-bottom-right-radius: 12px;
 }
 
-.card:hover .corner {
-    border-color: var(--accent-bright);
-    opacity: 1;
-    width: 12px;
-    height: 12px;
-}
+
 
 @media (max-width: 600px) {
     .card {

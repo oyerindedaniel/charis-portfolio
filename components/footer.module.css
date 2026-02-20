@@ -35,12 +35,14 @@
     transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
-.link:hover {
-    color: var(--text-primary);
-}
+@media (hover: hover) and (pointer: fine) {
+    .link:hover {
+        color: var(--text-primary);
+    }
 
-.link:hover::after {
-    width: 100%;
+    .link:hover::after {
+        width: 100%;
+    }
 }
 
 .link:focus-visible {

@@ -2,6 +2,8 @@
 
 import Link from "next/link";
 import { motion } from "motion/react";
+import { useState } from "react";
+import { Loader } from "./loader";
 import styles from "./model-card.module.css";
 
 interface ModelCardProps {
@@ -11,6 +13,8 @@ interface ModelCardProps {
 }
 
 export const ModelCard = ({ id, title, description }: ModelCardProps) => {
+    const [isLoading, setIsLoading] = useState(true);
+
     return (
         <Link href={`/project/${id}`} className={styles.card_link} draggable={false}>
             <motion.article
@@ -24,11 +28,26 @@ export const ModelCard = ({ id, title, description }: ModelCardProps) => {
                 <div className={styles.visual_section}>
                     <div className={styles.image_frame}>
                         <div className={styles.grid_overlay} />
+
+                        {isLoading && (
+                            <div className={styles.loader_overlay}>
+                                <Loader />
+                            </div>
+                        )}
+
+                        <img
+                            src={`/iso/${id}-light.png`}
+                            onLoad={() => setIsLoading(false)}
+                            style={{ display: "none" }}
+                            alt={`${title} preview`}
+                        />
+
                         <div
                             className={styles.thumbnail}
                             style={{
                                 "--bg-light": `url(/iso/${id}-light.png)`,
                                 "--bg-dark": `url(/iso/${id}-dark.png)`,
+                                opacity: isLoading ? 0 : 1,
                             } as React.CSSProperties}
                         />
                     </div>

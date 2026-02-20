@@ -1,0 +1,11 @@
+.char_mask {
+    position: relative;
+    overflow: hidden;
+    display: inline-flex;
+}
+
+.char_inner {
+    display: inline-block;
+    will-change: transform;
+    padding-right: 0.05em;
+}

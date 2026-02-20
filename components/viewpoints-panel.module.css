@@ -64,13 +64,15 @@
     outline: none;
 }
 
-.btn:hover {
-    color: var(--accent-bright);
-    border-color: var(--accent-bright);
-    transform: translateY(-1px);
-    box-shadow:
-        0 4px 8px rgba(0, 0, 0, 0.1),
-        inset 0 1px 0 0 var(--panel-inset-highlight);
+@media (hover: hover) and (pointer: fine) {
+    .btn:hover {
+        color: var(--accent-bright);
+        border-color: var(--accent-bright);
+        transform: translateY(-1px);
+        box-shadow:
+            0 4px 8px rgba(0, 0, 0, 0.1),
+            inset 0 1px 0 0 var(--panel-inset-highlight);
+    }
 }
 
 .btn:active {

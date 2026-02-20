@@ -10,6 +10,7 @@ import { ThemeSwitch } from "@/components/theme-switch";
 import { SpotifyPlayer } from "@/components/spotify-player";
 import { Footer } from "@/components/footer";
 import { socialLinks } from "@/constants/social";
+import { SplitText } from "@/components/split-text";
 
 projects.forEach(project => preloadModel(project.objPath, project.mtlPath));
 
@@ -19,7 +20,7 @@ const containerVariants: Variants = {
     opacity: 1,
     transition: {
       staggerChildren: 0.1,
-      delayChildren: 0.25
+      delayChildren: 0.15
     }
   }
 };
@@ -41,7 +42,11 @@ export default function Home() {
   return (
     <div className={styles.intro}>
       <header className={styles.header}>
-        <h1>Charis Oyerinde</h1>
+        <SplitText
+          text="Charis Oyerinde"
+          as="h1"
+          className={styles.title_h1}
+        />
         <ThemeSwitch />
       </header>
 
@@ -53,7 +58,7 @@ export default function Home() {
           transition={{
             duration: 0.8,
             ease: [0.215, 0.61, 0.355, 1],
-            delay: 0.08
+            delay: 0.1
           }}
         >
           I'm a<Skill label="Mechatronics engineering student" />and a curious learner who enjoys
@@ -68,7 +73,7 @@ export default function Home() {
           transition={{
             duration: 0.8,
             ease: [0.215, 0.61, 0.355, 1],
-            delay: 0.16
+            delay: 0.18
           }}
         >
           <a
@@ -100,7 +105,12 @@ export default function Home() {
       </LayoutGroup>
 
       <section className={styles.grid_section} aria-labelledby="projects-heading">
-        <h2 id="projects-heading" className={styles.section_title}>Featured Mechatronics Projects</h2>
+        <SplitText
+          text="Featured Mechatronics Projects"
+          as="h2"
+          className={styles.section_title}
+          delay={0.2}
+        />
         <motion.div
           className={styles.grid}
           variants={containerVariants}

@@ -38,11 +38,6 @@
     flex-direction: column;
     gap: 16px;
     max-width: 300px;
-    background: var(--background);
-    border: 1px solid var(--gray-200);
-    padding: 24px;
-    border-radius: 20px;
-    box-shadow: 0 20px 48px -12px var(--shadow-color);
 }
 
 .description_box {

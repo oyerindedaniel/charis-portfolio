@@ -2,7 +2,7 @@
 
 import { Canvas } from "@react-three/fiber";
 import { Suspense, useCallback, useRef, useState, useEffect } from "react";
-import { CameraControls } from "@react-three/drei";
+import { CameraControls, Preload } from "@react-three/drei";
 import * as THREE from "three";
 import { SceneErrorBoundary } from "./scene-error-boundary";
 import { ProjectScene } from "./project-scene";
@@ -80,6 +80,7 @@ export function ProjectViewer({
                             draggingSmoothTime={0.1}
                             dollySpeed={2.5}
                         />
+                        <Preload all />
                     </Canvas>
                 </Suspense>
             </SceneErrorBoundary>

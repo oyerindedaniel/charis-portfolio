@@ -32,43 +32,57 @@
   --tooltip-bg: rgba(26, 26, 26, 0.95);
   --tooltip-border: rgba(255, 255, 255, 0.12);
   --tooltip-text: #fcfcfc;
+
+  --switch-track: #e4e4e7;
+  --switch-border: rgba(0, 0, 0, 0.08);
+  --switch-inset-shadow: rgba(0, 0, 0, 0.1);
+  --switch-thumb: #ffffff;
+  --switch-thumb-highlight: rgba(255, 255, 255, 1);
+  --switch-icon-active: #1a1a1a;
+  --switch-icon-inactive: rgba(0, 0, 0, 0.3);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0d0d0d;
-    --foreground: #e5e5e5;
-    --text-primary: #e5e5e5;
-    --text-primary-rgb: 229, 229, 229;
-    --text-secondary: #888888;
-    --accent-bright: #ff5500;
-    --border: #e5e5e5;
+.dark {
+  --background: #0d0d0d;
+  --foreground: #e5e5e5;
+  --text-primary: #e5e5e5;
+  --text-primary-rgb: 229, 229, 229;
+  --text-secondary: #888888;
+  --accent-bright: #ff5500;
+  --border: #e5e5e5;
 
-    --btn-highlight: rgba(255, 255, 255, 0.2);
-    --btn-shadow-inset: rgba(0, 0, 0, 0.5);
-    --shadow-color: rgba(0, 0, 0, 0.45);
-    --btn-primary-inset-top: rgba(255, 255, 255, 0.1);
-    --btn-primary-inset-bottom: rgba(0, 0, 0, 0.4);
-    --btn-primary-rim: rgba(255, 255, 255, 0.06);
+  --btn-highlight: rgba(255, 255, 255, 0.2);
+  --btn-shadow-inset: rgba(0, 0, 0, 0.5);
+  --shadow-color: rgba(0, 0, 0, 0.45);
+  --btn-primary-inset-top: rgba(255, 255, 255, 0.1);
+  --btn-primary-inset-bottom: rgba(0, 0, 0, 0.4);
+  --btn-primary-rim: rgba(255, 255, 255, 0.06);
 
-    --button-primary-hover: #f0f0f0;
-    --button-secondary-hover: #1a1a1a;
-    --button-secondary-border: #262626;
+  --button-primary-hover: #f0f0f0;
+  --button-secondary-hover: #1a1a1a;
+  --button-secondary-border: #262626;
 
-    --gray-100: #1a1a1a;
-    --gray-200: #262626;
-    --gray-300: #333333;
-    --gray-400: #404040;
-    --gray-500: #525252;
-    --gray-600: #737373;
-    --gray-700: #a0a0a0;
-    --gray-800: #c2c2c2;
-    --gray-900: #e5e5e5;
+  --gray-100: #1a1a1a;
+  --gray-200: #262626;
+  --gray-300: #333333;
+  --gray-400: #404040;
+  --gray-500: #525252;
+  --gray-600: #737373;
+  --gray-700: #a0a0a0;
+  --gray-800: #c2c2c2;
+  --gray-900: #e5e5e5;
 
-    --tooltip-bg: rgba(229, 229, 229, 0.95);
-    --tooltip-border: rgba(0, 0, 0, 0.1);
-    --tooltip-text: #0d0d0d;
-  }
+  --tooltip-bg: rgba(229, 229, 229, 0.95);
+  --tooltip-border: rgba(0, 0, 0, 0.1);
+  --tooltip-text: #0d0d0d;
+
+  --switch-track: #27272a;
+  --switch-border: rgba(255, 255, 255, 0.08);
+  --switch-inset-shadow: rgba(0, 0, 0, 0.4);
+  --switch-thumb: #e5e5e5;
+  --switch-thumb-highlight: rgba(255, 255, 255, 0.3);
+  --switch-icon-active: #e5e5e5;
+  --switch-icon-inactive: rgba(255, 255, 255, 0.25);
 }
 
 html,
@@ -118,10 +132,8 @@ a {
   position: relative;
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+.dark {
+  color-scheme: dark;
 }
 
 .btn-primary {

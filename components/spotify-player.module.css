@@ -1,0 +1,48 @@
+.container {
+    width: 100%;
+    margin-top: 32px;
+    background: rgba(var(--text-primary-rgb), 0.03);
+    border: 1px solid var(--gray-200);
+    border-radius: 20px;
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 4px 24px -12px var(--shadow-color);
+}
+
+.header {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.icon {
+    width: 24px;
+    height: 24px;
+    object-fit: contain;
+}
+
+.title {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--text-secondary);
+    letter-spacing: 0.02em;
+    text-transform: uppercase;
+}
+
+.player_wrapper {
+    width: 100%;
+    border-radius: 12px;
+    overflow: hidden;
+    background: #000;
+    height: 152px;
+    position: relative;
+}
+
+.iframe {
+    border: none;
+    width: 100%;
+}

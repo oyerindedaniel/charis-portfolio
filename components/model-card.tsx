@@ -11,33 +11,52 @@ interface ModelCardProps {
 }
 
 export const ModelCard = ({ id, title, description }: ModelCardProps) => {
-    const lightImg = `/iso/${id}-light.png`;
-    const darkImg = `/iso/${id}-dark.png`;
-
     return (
         <Link href={`/project/${id}`} className={styles.card_link} draggable={false}>
             <motion.article
                 className={styles.card}
-                whileHover={{ y: -2 }}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, ease: "easeOut" }}
-                style={{
-                    "--bg-light": `url(${lightImg})`,
-                    "--bg-dark": `url(${darkImg})`,
-                } as any}
+                initial={{ opacity: 0, y: 16 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                whileHover={{ y: -4 }}
+                transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
             >
-                <div className={styles.content}>
-                    <h3 className={styles.title}>{title}</h3>
-                    <p className={styles.description}>{description}</p>
+                <div className={styles.visual_section}>
+                    <div className={styles.image_frame}>
+                        <div className={styles.grid_overlay} />
+                        <div
+                            className={styles.thumbnail}
+                            style={{
+                                "--bg-light": `url(/iso/${id}-light.png)`,
+                                "--bg-dark": `url(/iso/${id}-dark.png)`,
+                            } as React.CSSProperties}
+                        />
+                    </div>
+                    <div className={styles.tag}>
+                        <span className={styles.tag_dot} />
+                        CAD ASSEMBLY
+                    </div>
                 </div>
 
-                <div className={styles.footer}>
-                    <span className={styles.view_text}>Explore Project</span>
-                    <svg className={styles.arrow} width="14" height="14" viewBox="0 0 16 16" fill="none">
-                        <path d="M6 12L10 8L6 4" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
+                <div className={styles.content}>
+                    <div className={styles.header}>
+                        <h3 className={styles.title}>{title}</h3>
+                        <span className={styles.serial}>ID / {id.slice(0, 4).toUpperCase()}</span>
+                    </div>
+                    <p className={styles.description}>{description}</p>
+
+                    <div className={styles.footer}>
+                        <span className={styles.action}>View Documentation</span>
+                        <div className={styles.arrow_wrap}>
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5">
+                                <path d="M5 12h14M12 5l7 7-7 7" />
+                            </svg>
+                        </div>
+                    </div>
                 </div>
+
+                <div className={`${styles.corner} ${styles.top_left}`} />
+                <div className={`${styles.corner} ${styles.bottom_right}`} />
             </motion.article>
         </Link>
     );

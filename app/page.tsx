@@ -5,6 +5,11 @@ import { ModelCard } from "@/components/model-card";
 import { LayoutGroup, motion, Variants } from "motion/react";
 import styles from "./page.module.css";
 import { projects } from "@/constants/projects";
+import { preloadModel } from "@/components/project-scene";
+import { ThemeSwitch } from "@/components/theme-switch";
+import { SpotifyPlayer } from "@/components/spotify-player";
+
+projects.forEach(project => preloadModel(project.objPath, project.mtlPath));
 
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
@@ -33,8 +38,9 @@ const itemVariants: Variants = {
 export default function Home() {
   return (
     <div className={styles.intro}>
-      <header>
+      <header className={styles.header}>
         <h1>Charis Oyerinde</h1>
+        <ThemeSwitch />
       </header>
 
       <LayoutGroup>
@@ -113,6 +119,8 @@ export default function Home() {
           ))}
         </motion.div>
       </section>
+
+      <SpotifyPlayer />
     </div>
   );
 }

@@ -4,6 +4,7 @@ import localFont from "next/font/local";
 import "./globals.css";
 import styles from "./page.module.css";
 import Script from "next/script";
+import { ThemeProvider } from "@/components/theme-provider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -27,7 +28,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body className={`${geistSans.variable} ${bricolage.variable}`}>
         {process.env.NODE_ENV === "development" && (
           <Script
@@ -38,11 +39,13 @@ export default function RootLayout({
             strategy="afterInteractive"
           />
         )}
-        <div className={styles.page}>
-          <main className={styles.main}>
-            {children}
-          </main>
-        </div>
+        <ThemeProvider>
+          <div className={styles.page}>
+            <main className={styles.main}>
+              {children}
+            </main>
+          </div>
+        </ThemeProvider>
       </body>
     </html >
   );

@@ -51,7 +51,6 @@ export default function ProjectDetails() {
                 />
             </div>
 
-
             <div className={styles.overlay}>
                 <motion.div className={styles.info_panel}>
                     <button
@@ -61,15 +60,8 @@ export default function ProjectDetails() {
                     >
                         Back to Home
                     </button>
-                    <div className={styles.description_box}>
-                        <p className={styles.short_desc}>
-                            Technical breakdown of the {project.title} assembly.
-                            Designed and simulated for industrial mechatronics systems.
-                        </p>
-                    </div>
                 </motion.div>
             </div>
-
 
             <div className={styles.viewpoints_anchor}>
                 <ViewpointsPanel cameraControlsRef={cameraControlsRef} />

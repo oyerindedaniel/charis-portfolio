@@ -1,40 +1,37 @@
 import { useCallback, useRef } from "react";
 
 export const useFocusTrap = () => {
-    const containerRef = useRef<HTMLDivElement | null>(null);
+  const containerRef = useRef<HTMLDivElement | null>(null);
 
-    const getFocusable = useCallback(
-        (container: HTMLElement | null): HTMLElement[] => {
-            if (!container) return [];
+  const getFocusable = useCallback((container: HTMLElement | null): HTMLElement[] => {
+    if (!container) return [];
 
-            const elements = container.querySelectorAll<HTMLElement>(
-                'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
-            );
-
-            return Array.from(elements).filter(
-                (element) => !element.hasAttribute("disabled") && !element.getAttribute("aria-hidden")
-            );
-        },
-        []
+    const elements = container.querySelectorAll<HTMLElement>(
+      'a[href], button:not([disabled]), textarea, input, select, [tabindex]:not([tabindex="-1"])'
     );
 
-    const handleFocusBefore = useCallback(() => {
-        const focusables = getFocusable(containerRef.current);
-        if (focusables.length > 0) {
-            focusables[focusables.length - 1].focus();
-        }
-    }, [getFocusable]);
+    return Array.from(elements).filter(
+      (element) => !element.hasAttribute("disabled") && !element.getAttribute("aria-hidden")
+    );
+  }, []);
 
-    const handleFocusAfter = useCallback(() => {
-        const focusables = getFocusable(containerRef.current);
-        if (focusables.length > 0) {
-            focusables[0].focus();
-        }
-    }, [getFocusable]);
+  const handleFocusBefore = useCallback(() => {
+    const focusables = getFocusable(containerRef.current);
+    if (focusables.length > 0) {
+      focusables[focusables.length - 1].focus();
+    }
+  }, [getFocusable]);
 
-    return {
-        containerRef,
-        handleFocusBefore,
-        handleFocusAfter,
-    };
+  const handleFocusAfter = useCallback(() => {
+    const focusables = getFocusable(containerRef.current);
+    if (focusables.length > 0) {
+      focusables[0].focus();
+    }
+  }, [getFocusable]);
+
+  return {
+    containerRef,
+    handleFocusBefore,
+    handleFocusAfter,
+  };
 };

@@ -41,94 +41,87 @@ const itemVariants: Variants = {
 
 export default function Home() {
   return (
-    <div className={styles.intro}>
-      <header className={styles.header}>
-        <SplitText text="Charis Oyerinde" as="h1" className={styles.title_h1} />
-        <ThemeSwitch />
-      </header>
+    <div>
+      <div className={styles.intro}>
+        <header className={styles.header}>
+          <SplitText text="Charis Oyerinde" as="h1" className={styles.title_h1} />
+          <ThemeSwitch />
+        </header>
 
-      <LayoutGroup>
-        <motion.p
-          className={styles.intro_text}
-          initial={{ opacity: 0, y: 12, filter: "blur(8px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{
-            duration: 0.8,
-            ease: [0.215, 0.61, 0.355, 1],
-            delay: 0.1,
-          }}
-        >
-          I'm a<Skill label="Mechatronics engineering student" />
-          and a curious learner who enjoys the mathematics behind systems. I have worked with
-          <Skill label="Fusion 360" />
-          for engineering drawings,
-          <Skill label="Python" />
-          for data analysis,
-          <Skill label="MATLAB" />
-          for simulation, and
-          <Skill label="C++" />
-          for
-          <Skill label="Robot Operating System" />
-          and
-          <Skill label="Arduino" />
-          projects.
-        </motion.p>
+        <LayoutGroup>
+          <motion.p
+            className={styles.intro_text}
+            initial={{ opacity: 0, y: 12, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{
+              duration: 0.8,
+              ease: [0.215, 0.61, 0.355, 1],
+              delay: 0.1,
+            }}
+          >
+            I'm a<Skill label="Mechatronics engineering student" />and a curious learner who enjoys
+            the mathematics behind systems. I have worked with<Skill label="Fusion 360" />for 3D
+            mechanical design,<Skill label="Python" />for implementing basic algorithms from scratch,
+            <Skill label="MATLAB" />for control system modeling, and<Skill label="C++" />for
+            <Skill label="Robot Operating System" /> and<Skill label="Arduino" />control systems.
+          </motion.p>
 
-        <motion.div
-          className={styles.actions}
-          initial={{ opacity: 0, y: 12, filter: "blur(8px)" }}
-          animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-          transition={{
-            duration: 0.8,
-            ease: [0.215, 0.61, 0.355, 1],
-            delay: 0.18,
-          }}
-        >
-          <a
-            href={socialLinks.linkedin.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary"
+          <motion.div
+            className={styles.actions}
+            initial={{ opacity: 0, y: 12, filter: "blur(8px)" }}
+            animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
+            transition={{
+              duration: 0.8,
+              ease: [0.215, 0.61, 0.355, 1],
+              delay: 0.18,
+            }}
           >
-            <Image
-              src={socialLinks.linkedin.icon}
-              alt="LinkedIn Profile"
-              width={24}
-              height={24}
-              className={styles.icon}
-              unoptimized
-            />
-            {socialLinks.linkedin.label}
-          </a>
-          <a
-            href={socialLinks.resume.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-secondary"
-          >
-            <Image
-              src={socialLinks.resume.icon}
-              alt="Download Resume"
-              width={24}
-              height={24}
-              className={styles.icon}
-              unoptimized
-            />
-            {socialLinks.resume.label}
-          </a>
-          <a href={socialLinks.email.href} className="btn-secondary">
-            <Image
-              src={socialLinks.email.icon}
-              alt="Send Email"
-              width={24}
-              height={24}
-              className={styles.icon}
-              unoptimized
-            />
-            {socialLinks.email.label}
-          </a>
-        </motion.div>
-      </LayoutGroup>
+            <a
+              href={socialLinks.linkedin.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+            >
+              <Image
+                src={socialLinks.linkedin.icon}
+                alt="LinkedIn Profile"
+                width={24}
+                height={24}
+                className={styles.icon}
+                unoptimized
+              />
+              {socialLinks.linkedin.label}
+            </a>
+            <a
+              href={socialLinks.resume.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-secondary"
+            >
+              <Image
+                src={socialLinks.resume.icon}
+                alt="Download Resume"
+                width={24}
+                height={24}
+                className={styles.icon}
+                unoptimized
+              />
+              {socialLinks.resume.label}
+            </a>
+            <a href={socialLinks.email.href} className="btn-secondary">
+              <Image
+                src={socialLinks.email.icon}
+                alt="Send Email"
+                width={24}
+                height={24}
+                className={styles.icon}
+                unoptimized
+              />
+              {socialLinks.email.label}
+            </a>
+          </motion.div>
+        </LayoutGroup>
+      </div>
 
       <section className={styles.grid_section} aria-labelledby="projects-heading">
         <SplitText

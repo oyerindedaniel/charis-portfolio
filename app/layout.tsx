@@ -19,6 +19,12 @@ const bricolage = localFont({
   display: "swap",
 });
 
+const dancingScript = localFont({
+  src: "../public/fonts/dancing-script/dancing-script-variable.ttf",
+  variable: "--font-dancing-script",
+  display: "swap",
+});
+
 export const metadata: Metadata = {
   title: {
     default: `${siteConfig.name} | Portfolio`,
@@ -32,7 +38,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.name,
     images: [
       {
-        url: `${siteConfig.url}${siteConfig.ogImage}`,
+        url: "/og-image.png",
         width: 1200,
         height: 630,
         alt: siteConfig.name,
@@ -45,12 +51,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: siteConfig.name,
     description: siteConfig.description,
-    images: [`${siteConfig.url}${siteConfig.ogImage}`],
-  },
-  robots: {
-    index: true,
-    follow: true,
-  },
+    images: ["/og-image.png"],
+  }
 };
 
 export default function RootLayout({
@@ -60,12 +62,12 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${bricolage.variable}`}>
+      <body className={`${geistSans.variable} ${bricolage.variable} ${dancingScript.variable}`}>
         {process.env.NODE_ENV === "development" && (
           <Script
             src="https://unpkg.com/@oyerinde/caliper/dist/index.global.js"
             data-config={JSON.stringify({
-              bridge: { enabled: true }
+              bridge: { enabled: true },
             })}
             strategy="afterInteractive"
           />
@@ -73,13 +75,11 @@ export default function RootLayout({
         <ThemeProvider>
           <MotionProvider>
             <div className={styles.page}>
-              <main className={styles.main}>
-                {children}
-              </main>
+              <main className={styles.main}>{children}</main>
             </div>
           </MotionProvider>
         </ThemeProvider>
       </body>
-    </html >
+    </html>
   );
 }

@@ -1,71 +1,73 @@
 .footer {
-    width: 100%;
-    margin-top: 120px;
-    padding: 25px 0 40px 0;
-    border-top: 1px solid var(--gray-200);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    font-family: var(--font-geist-sans);
-    font-size: 13px;
-    font-weight: 500;
+  width: 100%;
+  margin-top: 120px;
+  padding: 25px 0 40px 0;
+  border-top: 1px solid var(--gray-200);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-family: var(--font-geist-sans);
+  font-size: 13px;
+  font-weight: 500;
 }
 
 .links {
-    display: flex;
-    gap: 24px;
+  display: flex;
+  gap: 24px;
 }
 
 .link {
-    color: var(--text-secondary);
-    transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
-    position: relative;
-    padding: 4px 0;
-    outline: none;
+  color: var(--text-secondary);
+  transition: all 0.2s cubic-bezier(0.2, 0.8, 0.2, 1);
+  position: relative;
+  padding: 4px 0;
+  outline: none;
 }
 
 .link::after {
-    content: '';
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    width: 0;
-    height: 1px;
-    background: var(--text-primary);
-    transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: var(--text-primary);
+  transition: width 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
 }
 
 @media (hover: hover) and (pointer: fine) {
-    .link:hover {
-        color: var(--text-primary);
-    }
+  .link:hover {
+    color: var(--text-primary);
+  }
 
-    .link:hover::after {
-        width: 100%;
-    }
+  .link:hover::after {
+    width: 100%;
+  }
 }
 
 .link:focus-visible {
-    color: var(--text-primary);
-    border-radius: 4px;
-    box-shadow: 0 0 0 3px var(--background), 0 0 0 5px var(--gray-300);
+  color: var(--text-primary);
+  border-radius: 4px;
+  box-shadow:
+    0 0 0 3px var(--background),
+    0 0 0 5px var(--gray-300);
 }
 
 .copyright {
-    color: var(--text-secondary);
-    letter-spacing: 0.02em;
+  color: var(--text-secondary);
+  letter-spacing: 0.02em;
 }
 
 @media (max-width: 600px) {
-    .footer {
-        margin-top: 80px;
-        flex-direction: column-reverse;
-        gap: 24px;
-        align-items: flex-start;
-        padding: 32px 0;
-    }
+  .footer {
+    margin-top: 80px;
+    flex-direction: column-reverse;
+    gap: 24px;
+    align-items: flex-start;
+    padding: 32px 0;
+  }
 
-    .links {
-        gap: 20px;
-    }
+  .links {
+    gap: 20px;
+  }
 }

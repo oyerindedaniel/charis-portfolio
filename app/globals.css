@@ -160,8 +160,11 @@ a {
   letter-spacing: -0.01em;
   cursor: pointer;
   border-radius: 9999px;
-  transition: transform 0.1s cubic-bezier(0.3, 0, 0, 1), box-shadow 0.1s cubic-bezier(0.3, 0, 0, 1);
-  box-shadow: inset 0 1.5px 0 0 var(--btn-primary-inset-top),
+  transition:
+    transform 0.1s cubic-bezier(0.3, 0, 0, 1),
+    box-shadow 0.1s cubic-bezier(0.3, 0, 0, 1);
+  box-shadow:
+    inset 0 1.5px 0 0 var(--btn-primary-inset-top),
     inset 0 -3px 0 0 var(--btn-primary-inset-bottom),
     0 8px 12px -6px var(--shadow-color),
     0 0 0 0.5px var(--btn-primary-rim);
@@ -170,7 +173,8 @@ a {
 
 .btn-primary:active {
   transform: translateY(1px);
-  box-shadow: inset 0 0.5px 0 0 var(--btn-primary-inset-top),
+  box-shadow:
+    inset 0 0.5px 0 0 var(--btn-primary-inset-top),
     inset 0 -1px 0 0 var(--btn-primary-inset-bottom),
     0 5px 15px -8px var(--shadow-color),
     0 0 0 0.5px var(--btn-primary-rim);
@@ -204,7 +208,8 @@ a {
   position: relative;
   border-radius: 9999px;
   transition: all 0.2s cubic-bezier(0.3, 0, 0, 1);
-  box-shadow: inset 0 1.5px 0 0 var(--btn-highlight),
+  box-shadow:
+    inset 0 1.5px 0 0 var(--btn-highlight),
     inset 0 -3px 0 0 var(--btn-shadow-inset);
   user-select: none;
 }
@@ -212,7 +217,8 @@ a {
 @media (hover: hover) and (pointer: fine) {
   .btn-secondary:hover {
     background: var(--gray-200);
-    box-shadow: inset 0 1.5px 0 0 var(--btn-highlight),
+    box-shadow:
+      inset 0 1.5px 0 0 var(--btn-highlight),
       inset 0 -3px 0 0 var(--btn-shadow-inset),
       0 8px 16px -8px var(--shadow-color);
   }
@@ -225,7 +231,8 @@ a {
 
 .btn-secondary:active {
   transform: translateY(1px);
-  box-shadow: inset 0 0.5px 0 0 var(--btn-highlight),
+  box-shadow:
+    inset 0 0.5px 0 0 var(--btn-highlight),
     inset 0 -0.5px 0 0 var(--btn-shadow-inset);
 }
 

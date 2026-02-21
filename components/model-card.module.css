@@ -53,10 +53,14 @@
   }
 }
 
+.card {
+  height: 100%;
+}
+
 .visual_section {
   position: relative;
   width: 100%;
-  aspect-ratio: 16 / 9;
+  aspect-ratio: 4 / 3;
   background: var(--gray-100);
   border-radius: 8px;
   overflow: hidden;
@@ -114,7 +118,7 @@
   width: 100%;
   height: 100%;
   background-image: var(--bg-light);
-  background-size: contain;
+  background-size: 120%;
   background-position: center;
   background-repeat: no-repeat;
   z-index: 2;
@@ -129,8 +133,9 @@
 .content {
   display: flex;
   flex-direction: column;
-  gap: 8px;
-  padding: 4px;
+  gap: 16px;
+  padding: 8px 4px;
+  flex-grow: 1;
 }
 
 .header {

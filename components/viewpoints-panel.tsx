@@ -42,10 +42,7 @@ const VIEWS = {
 
 type ViewKey = keyof typeof VIEWS;
 
-const ADJACENCY: Record<
-  ViewKey,
-  { up: ViewKey; down: ViewKey; left: ViewKey; right: ViewKey }
-> = {
+const ADJACENCY: Record<ViewKey, { up: ViewKey; down: ViewKey; left: ViewKey; right: ViewKey }> = {
   front: { up: "top", down: "bottom", left: "left", right: "right" },
   right: { up: "top", down: "bottom", left: "front", right: "back" },
   back: { up: "top", down: "bottom", left: "right", right: "left" },
@@ -174,23 +171,9 @@ export function ViewpointsPanel({ cameraControlsRef }: ViewpointsPanelProps) {
       const deltaX = targetX - currentX;
       const deltaY = targetY - currentY;
       const overshootX =
-        targetX +
-        (deltaX === 0
-          ? Math.random() > 0.5
-            ? 15
-            : -15
-          : deltaX > 0
-            ? 30
-            : -30);
+        targetX + (deltaX === 0 ? (Math.random() > 0.5 ? 15 : -15) : deltaX > 0 ? 30 : -30);
       const overshootY =
-        targetY +
-        (deltaY === 0
-          ? Math.random() > 0.5
-            ? 30
-            : -30
-          : deltaY > 0
-            ? 60
-            : -60);
+        targetY + (deltaY === 0 ? (Math.random() > 0.5 ? 30 : -30) : deltaY > 0 ? 60 : -60);
 
       setCubeFrom({ x: overshootX, y: overshootY });
       setCubeTarget({ x: targetX, y: targetY });
@@ -201,19 +184,15 @@ export function ViewpointsPanel({ cameraControlsRef }: ViewpointsPanelProps) {
 
       const controls = cameraControlsRef.current;
       if (!controls) return;
-      controls.rotateTo(
-        VIEWS[targetView].azimuth,
-        VIEWS[targetView].polar,
-        true,
-      );
+      controls.rotateTo(VIEWS[targetView].azimuth, VIEWS[targetView].polar, true);
     },
-    [activeView],
+    [activeView]
   );
 
   useEffect(() => {
     if (tick > 0 && lastSlot.current && gridRef.current) {
       const btn = gridRef.current.querySelector(
-        `[data-slot="${lastSlot.current}"]`,
+        `[data-slot="${lastSlot.current}"]`
       ) as HTMLButtonElement;
       if (btn) {
         setTimeout(() => {
@@ -239,10 +218,7 @@ export function ViewpointsPanel({ cameraControlsRef }: ViewpointsPanelProps) {
             transition={{ duration: 0.28, ease: [0.4, 0, 0.2, 1] }}
           >
             <div className={styles.row}>
-              <Tooltip
-                content={VIEWS[neighbors.up].label}
-                disabled={tooltipsDisabled}
-              >
+              <Tooltip content={VIEWS[neighbors.up].label} disabled={tooltipsDisabled}>
                 <button
                   className={styles.btn}
                   onClick={() => goTo(neighbors.up, "up")}
@@ -254,10 +230,7 @@ export function ViewpointsPanel({ cameraControlsRef }: ViewpointsPanelProps) {
               </Tooltip>
             </div>
             <div className={styles.row}>
-              <Tooltip
-                content={VIEWS[neighbors.left].label}
-                disabled={tooltipsDisabled}
-              >
+              <Tooltip content={VIEWS[neighbors.left].label} disabled={tooltipsDisabled}>
                 <button
                   className={styles.btn}
                   onClick={() => goTo(neighbors.left, "left")}
@@ -268,10 +241,7 @@ export function ViewpointsPanel({ cameraControlsRef }: ViewpointsPanelProps) {
                 </button>
               </Tooltip>
               <div className={styles.cube_spacer} />
-              <Tooltip
-                content={VIEWS[neighbors.right].label}
-                disabled={tooltipsDisabled}
-              >
+              <Tooltip content={VIEWS[neighbors.right].label} disabled={tooltipsDisabled}>
                 <button
                   className={styles.btn}
                   onClick={() => goTo(neighbors.right, "right")}
@@ -283,10 +253,7 @@ export function ViewpointsPanel({ cameraControlsRef }: ViewpointsPanelProps) {
               </Tooltip>
             </div>
             <div className={styles.row}>
-              <Tooltip
-                content={VIEWS[neighbors.down].label}
-                disabled={tooltipsDisabled}
-              >
+              <Tooltip content={VIEWS[neighbors.down].label} disabled={tooltipsDisabled}>
                 <button
                   className={styles.btn}
                   onClick={() => goTo(neighbors.down, "down")}

@@ -53,7 +53,7 @@ export function ProjectViewer({
         e.preventDefault();
       };
       const handleContextRestored = () => {
-        console.info("[ProjectViewer] WebGL context restored");
+        console.debug("[ProjectViewer] WebGL context restored");
       };
       canvas.addEventListener("webglcontextlost", handleContextLost);
       canvas.addEventListener("webglcontextrestored", handleContextRestored);

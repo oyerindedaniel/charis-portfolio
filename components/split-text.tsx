@@ -48,7 +48,7 @@ export function SplitText({ text, className, as: Component = "span", delay = 0 }
             style={{ display: "flex", flexWrap: "wrap" }}
         >
             {charArray.map((char, i) => (
-                <span key={i} className={styles.char_mask}>
+                <span key={`${i}-${char}`} className={styles.char_mask}>
                     <motion.span
                         variants={charVariants}
                         className={styles.char_inner}

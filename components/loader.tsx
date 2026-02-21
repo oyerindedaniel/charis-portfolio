@@ -20,7 +20,7 @@ export const Loader = () => {
             <div className={styles.grid}>
                 {dotVars.map((colorVar, index) => (
                     <motion.div
-                        key={index}
+                        key={colorVar}
                         className={styles.dot}
                         style={{ backgroundColor: colorVar }}
                         animate={{

@@ -11,86 +11,96 @@ import styles from "./project-viewer.module.css";
 import type { MaterialPresetKey } from "@/constants/materials";
 
 interface ProjectViewerProps {
-    objPath: string;
-    mtlPath: string;
-    cameraControlsRef: React.RefObject<CameraControls | null>;
-    showAxes?: boolean;
-    showGrid?: boolean;
-    materialPreset?: MaterialPresetKey;
+  objPath: string;
+  mtlPath: string;
+  cameraControlsRef: React.RefObject<CameraControls | null>;
+  showAxes?: boolean;
+  showGrid?: boolean;
+  materialPreset?: MaterialPresetKey;
+  isTransitioning?: boolean;
 }
 
 export function ProjectViewer({
-    objPath,
-    mtlPath,
-    cameraControlsRef,
-    showAxes = false,
-    showGrid = false,
-    materialPreset = "steel",
+  objPath,
+  mtlPath,
+  cameraControlsRef,
+  showAxes = false,
+  showGrid = false,
+  materialPreset = "steel",
+  isTransitioning = false,
 }: ProjectViewerProps) {
-    const modelGroupRef = useRef<THREE.Group | null>(null);
-    const [fitted, setFitted] = useState(false);
+  const modelGroupRef = useRef<THREE.Group | null>(null);
+  const [fitted, setFitted] = useState(false);
 
-    useEffect(() => {
-        if (!fitted) return;
+  useEffect(() => {
+    if (!fitted) return;
 
-        const handleResize = () => {
-            const controls = cameraControlsRef.current;
-            const group = modelGroupRef.current;
-            if (!controls || !group) return;
-            controls.fitToBox(group, false);
-        };
+    const handleResize = () => {
+      const controls = cameraControlsRef.current;
+      const group = modelGroupRef.current;
+      if (!controls || !group) return;
+      controls.fitToBox(group, false);
+    };
 
-        window.addEventListener("resize", handleResize);
-        return () => window.removeEventListener("resize", handleResize);
-    }, [fitted]);
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, [fitted]);
 
-    const handleCreated = useCallback((state: { gl: { domElement: HTMLCanvasElement } }) => {
-        const canvas = state.gl.domElement;
-        const handleContextLost = (e: Event) => { e.preventDefault(); };
-        const handleContextRestored = () => { console.info("[ProjectViewer] WebGL context restored"); };
-        canvas.addEventListener("webglcontextlost", handleContextLost);
-        canvas.addEventListener("webglcontextrestored", handleContextRestored);
-    }, []);
+  const handleCreated = useCallback(
+    (state: { gl: { domElement: HTMLCanvasElement } }) => {
+      const canvas = state.gl.domElement;
+      const handleContextLost = (e: Event) => {
+        e.preventDefault();
+      };
+      const handleContextRestored = () => {
+        console.info("[ProjectViewer] WebGL context restored");
+      };
+      canvas.addEventListener("webglcontextlost", handleContextLost);
+      canvas.addEventListener("webglcontextrestored", handleContextRestored);
+    },
+    [],
+  );
 
-    const handleModelReady = useCallback((group: THREE.Group) => {
-        modelGroupRef.current = group;
-        const controls = cameraControlsRef.current;
-        if (!controls) return;
+  const handleModelReady = useCallback((group: THREE.Group) => {
+    modelGroupRef.current = group;
+    const controls = cameraControlsRef.current;
+    if (!controls) return;
 
-        controls.fitToBox(group, true).then(() => {
-            controls.setTarget(0, 0, 0, false);
-            setFitted(true);
-        });
-    }, [cameraControlsRef]);
+    controls.fitToBox(group, true).then(() => {
+      controls.setTarget(0, 0, 0, false);
+      setFitted(true);
+    });
+  }, []);
 
-    return (
-        <div className={styles.viewer}>
-            <SceneErrorBoundary>
-                <Suspense fallback={<Loader />}>
-                    <Canvas
-                        camera={{ position: [10, 10, 10], fov: 45 }}
-                        gl={{ alpha: true }}
-                        onCreated={handleCreated}
-                    >
-                        <ProjectScene
-                            objPath={objPath}
-                            mtlPath={mtlPath}
-                            showAxes={showAxes}
-                            showGrid={showGrid}
-                            materialPreset={materialPreset}
-                            onReady={handleModelReady}
-                        />
-                        <CameraControls
-                            ref={cameraControlsRef}
-                            makeDefault
-                            smoothTime={0.15}
-                            draggingSmoothTime={0.1}
-                            dollySpeed={2.5}
-                        />
-                        <Preload all />
-                    </Canvas>
-                </Suspense>
-            </SceneErrorBoundary>
-        </div>
-    );
+  return (
+    <div className={styles.viewer}>
+      <SceneErrorBoundary>
+        <Suspense fallback={<Loader />}>
+          <Canvas
+            camera={{ position: [10, 10, 10], fov: 45 }}
+            gl={{ alpha: true }}
+            onCreated={handleCreated}
+          >
+            <ProjectScene
+              objPath={objPath}
+              mtlPath={mtlPath}
+              showAxes={showAxes}
+              showGrid={showGrid}
+              materialPreset={materialPreset}
+              isTransitioning={isTransitioning}
+              onReady={handleModelReady}
+            />
+            <CameraControls
+              ref={cameraControlsRef}
+              makeDefault
+              smoothTime={0.15}
+              draggingSmoothTime={0.1}
+              dollySpeed={2.5}
+            />
+            <Preload all />
+          </Canvas>
+        </Suspense>
+      </SceneErrorBoundary>
+    </div>
+  );
 }

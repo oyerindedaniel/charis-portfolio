@@ -5,6 +5,7 @@ import "./globals.css";
 import styles from "./page.module.css";
 import Script from "next/script";
 import { ThemeProvider } from "@/components/theme-provider";
+import { MotionProvider } from "@/components/motion-provider";
 import { siteConfig } from "@/config/site";
 
 const geistSans = Geist({
@@ -70,11 +71,13 @@ export default function RootLayout({
           />
         )}
         <ThemeProvider>
-          <div className={styles.page}>
-            <main className={styles.main}>
-              {children}
-            </main>
-          </div>
+          <MotionProvider>
+            <div className={styles.page}>
+              <main className={styles.main}>
+                {children}
+              </main>
+            </div>
+          </MotionProvider>
         </ThemeProvider>
       </body>
     </html >

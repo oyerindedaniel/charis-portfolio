@@ -23,9 +23,33 @@ export const ModelCard = ({ id, title, description }: ModelCardProps) => {
         initial={{ opacity: 0, y: 16 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
-        whileHover={{ y: -4 }}
+        whileHover="hover"
         transition={{ duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
       >
+        <div className={styles.content}>
+          <div className={styles.header}>
+            <span className={styles.serial}>ID / {id.slice(0, 4).toUpperCase()}</span>
+            <h3 className={styles.title}>{title}</h3>
+          </div>
+          <p className={styles.description}>{description}</p>
+
+          <div className={styles.footer}>
+            <span className={styles.action}>View</span>
+            <div className={styles.arrow_wrap}>
+              <svg
+                width="14"
+                height="14"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2.5"
+              >
+                <path d="M5 12h14M12 5l7 7-7 7" />
+              </svg>
+            </div>
+          </div>
+        </div>
+
         <div className={styles.visual_section}>
           <div className={styles.image_frame}>
             <div className={styles.grid_overlay} />
@@ -46,8 +70,11 @@ export const ModelCard = ({ id, title, description }: ModelCardProps) => {
               unoptimized
             />
 
-            <div
+            <m.div
               className={styles.thumbnail}
+              variants={{
+                hover: { scale: 1.1, y: -4 },
+              }}
               style={
                 {
                   "--bg-light": `url(/iso/${id}-light.png)`,
@@ -56,30 +83,6 @@ export const ModelCard = ({ id, title, description }: ModelCardProps) => {
                 } as React.CSSProperties
               }
             />
-          </div>
-        </div>
-
-        <div className={styles.content}>
-          <div className={styles.header}>
-            <h3 className={styles.title}>{title}</h3>
-            <span className={styles.serial}>ID / {id.slice(0, 4).toUpperCase()}</span>
-          </div>
-          <p className={styles.description}>{description}</p>
-
-          <div className={styles.footer}>
-            <span className={styles.action}>View</span>
-            <div className={styles.arrow_wrap}>
-              <svg
-                width="14"
-                height="14"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2.5"
-              >
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
-            </div>
           </div>
         </div>
 

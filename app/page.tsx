@@ -133,7 +133,7 @@ export default function Home() {
 
       <section className={styles.grid_section} aria-labelledby="projects-heading">
         <SplitText
-          text="Featured Mechatronics Projects"
+          text="3D Featured Mechatronics Projects"
           as="h2"
           className={styles.section_title}
           delay={0.2}

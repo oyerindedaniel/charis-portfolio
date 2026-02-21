@@ -83,7 +83,7 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
           className={styles.project_badge}
           initial={{ y: -20, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
-          transition={{ delay: 0.3, duration: 0.5, ease: [0.2, 0.8, 0.2, 1] }}
+          transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
         >
           <h1 className={styles.badge_title}>{project.title}</h1>
           <div className={`${styles.corner} ${styles.top_left}`} />

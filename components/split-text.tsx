@@ -37,8 +37,10 @@ const charVariants: Variants = {
 export function SplitText({ text, className, as: Component = "span", delay = 0 }: SplitTextProps) {
   const charArray = Array.from(text);
 
+  const MotionComponent = motion.create(Component);
+
   return (
-    <motion.span
+    <MotionComponent
       variants={titleContainer}
       initial="initial"
       animate="animate"
@@ -54,6 +56,6 @@ export function SplitText({ text, className, as: Component = "span", delay = 0 }
           </motion.span>
         </span>
       ))}
-    </motion.span>
+    </MotionComponent>
   );
 }

@@ -13,9 +13,9 @@ const geistSans = Geist({
   subsets: ["latin"],
 });
 
-const bricolage = localFont({
-  src: "../public/fonts/bricolage/bricolage-variable.ttf",
-  variable: "--font-bricolage",
+const instrumentSerif = localFont({
+  src: "../public/fonts/instrument-serif/InstrumentSerif-Regular.ttf",
+  variable: "--font-instrument-serif",
   display: "swap",
 });
 
@@ -26,6 +26,7 @@ const dancingScript = localFont({
 });
 
 export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
   title: {
     default: `${siteConfig.name} | Portfolio`,
     template: `%s | ${siteConfig.name}`,
@@ -62,7 +63,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${bricolage.variable} ${dancingScript.variable}`}>
+      <body className={`${geistSans.variable} ${instrumentSerif.variable} ${dancingScript.variable}`}>
         {process.env.NODE_ENV === "development" && (
           <Script
             src="https://unpkg.com/@oyerinde/caliper/dist/index.global.js"

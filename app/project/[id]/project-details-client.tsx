@@ -102,7 +102,7 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
       <div className={styles.materials_anchor}>
         <div className={styles.tray_inner}>
           <MaterialSelector active={materialPreset} onChange={handleMaterialChange} />
-          <button
+          {/* <button
             className={`${styles.hud_btn} ${showGrid ? styles.hud_btn_active : ""}`}
             onClick={() => setShowGrid(!showGrid)}
             aria-label="Toggle Grid"
@@ -124,7 +124,7 @@ export function ProjectDetailsClient({ project }: ProjectDetailsClientProps) {
               <path d="M15 3v18" />
             </svg>
             <span className={styles.hud_label}>GRID</span>
-          </button>
+          </button> */}
         </div>
       </div>
 

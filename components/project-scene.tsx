@@ -113,10 +113,10 @@ export function ProjectScene({
         const finalColor = isNeutral
           ? new THREE.Color(...(isDark ? preset.primaryColor : preset.accentColor))
           : new THREE.Color(
-            originalBaseColor.r * 0.3 + preset.primaryColor[0] * 0.7,
-            originalBaseColor.g * 0.3 + preset.primaryColor[1] * 0.7,
-            originalBaseColor.b * 0.3 + preset.primaryColor[2] * 0.7
-          );
+              originalBaseColor.r * 0.3 + preset.primaryColor[0] * 0.7,
+              originalBaseColor.g * 0.3 + preset.primaryColor[1] * 0.7,
+              originalBaseColor.b * 0.3 + preset.primaryColor[2] * 0.7
+            );
 
         mat.color.copy(finalColor);
         mat.metalness = preset.metalness;
@@ -149,7 +149,7 @@ export function ProjectScene({
 
       {showAxes && <axesHelper args={[5]} />}
 
-      {showGrid && <DynamicGrid groupRef={groupRef} isDark={isDark} />}
+      {/* {showGrid && <DynamicGrid groupRef={groupRef} isDark={isDark} />} */}
 
       <group ref={groupRef}>
         <Center>

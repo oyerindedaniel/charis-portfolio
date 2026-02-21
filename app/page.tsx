@@ -59,11 +59,19 @@ export default function Home() {
               delay: 0.1,
             }}
           >
-            I'm a<Skill label="Mechatronics engineering student" />and a curious learner who enjoys
-            the mathematics behind systems. I have worked with<Skill label="Fusion 360" />for 3D
-            mechanical design,<Skill label="Python" />for implementing basic algorithms from scratch,
-            <Skill label="MATLAB" />for control system modeling, and<Skill label="C++" />for
-            <Skill label="Robot Operating System" /> and<Skill label="Arduino" />control systems.
+            I'm a<Skill label="Mechatronics engineering student" />
+            and a curious learner who enjoys the mathematics behind systems. I have worked with
+            <Skill label="Fusion 360" />
+            for 3D mechanical design,
+            <Skill label="Python" />
+            for implementing basic algorithms from scratch,
+            <Skill label="MATLAB" />
+            for control system modeling, and
+            <Skill label="C++" />
+            for
+            <Skill label="Robot Operating System" /> and
+            <Skill label="Arduino" />
+            control systems.
           </motion.p>
 
           <motion.div

@@ -46,20 +46,17 @@ export function ProjectViewer({
     return () => window.removeEventListener("resize", handleResize);
   }, [fitted]);
 
-  const handleCreated = useCallback(
-    (state: { gl: { domElement: HTMLCanvasElement } }) => {
-      const canvas = state.gl.domElement;
-      const handleContextLost = (e: Event) => {
-        e.preventDefault();
-      };
-      const handleContextRestored = () => {
-        console.debug("[ProjectViewer] WebGL context restored");
-      };
-      canvas.addEventListener("webglcontextlost", handleContextLost);
-      canvas.addEventListener("webglcontextrestored", handleContextRestored);
-    },
-    [],
-  );
+  const handleCreated = useCallback((state: { gl: { domElement: HTMLCanvasElement } }) => {
+    const canvas = state.gl.domElement;
+    const handleContextLost = (e: Event) => {
+      e.preventDefault();
+    };
+    const handleContextRestored = () => {
+      console.debug("[ProjectViewer] WebGL context restored");
+    };
+    canvas.addEventListener("webglcontextlost", handleContextLost);
+    canvas.addEventListener("webglcontextrestored", handleContextRestored);
+  }, []);
 
   const handleModelReady = useCallback((group: THREE.Group) => {
     modelGroupRef.current = group;

@@ -1,32 +1,26 @@
 "use client";
 
 import { useTheme } from "next-themes";
-import { useState, useEffect } from "react";
 import styles from "./theme-switch.module.css";
 
 export function ThemeSwitch() {
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
 
-  useEffect(() => setMounted(true), []);
-
-  if (!mounted) return <div className={styles.frame} />;
-
-  const isDark = resolvedTheme === "dark";
-
-  const toggle = () => setTheme(isDark ? "light" : "dark");
+  const toggle = () => {
+    setTheme(resolvedTheme === "dark" ? "light" : "dark");
+  };
 
   return (
     <button
       className={styles.frame}
       onClick={toggle}
-      aria-label={`Switch to ${isDark ? "light" : "dark"} mode`}
+      aria-label="Toggle theme"
       role="switch"
-      aria-checked={isDark}
+      suppressHydrationWarning
     >
-      <div className={`${styles.rocker} ${isDark ? styles.rocker_dark : styles.rocker_light}`}>
+      <div className={styles.rocker}>
         <div className={styles.side}>
-          <span className={`${styles.icon} ${!isDark ? styles.icon_active : ""}`}>
+          <span className={styles.sun_wrapper}>
             <svg
               width="16"
               height="16"
@@ -36,6 +30,7 @@ export function ThemeSwitch() {
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
+              className={styles.icon}
             >
               <circle cx="12" cy="12" r="4" />
               <path d="M12 2v2" />
@@ -50,7 +45,7 @@ export function ThemeSwitch() {
           </span>
         </div>
         <div className={styles.side}>
-          <span className={`${styles.icon} ${isDark ? styles.icon_active : ""}`}>
+          <span className={styles.moon_wrapper}>
             <svg
               width="16"
               height="16"
@@ -60,6 +55,7 @@ export function ThemeSwitch() {
               strokeWidth="2.5"
               strokeLinecap="round"
               strokeLinejoin="round"
+              className={styles.icon}
             >
               <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z" />
             </svg>

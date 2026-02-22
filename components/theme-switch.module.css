@@ -26,11 +26,11 @@
   display: flex;
 }
 
-.rocker_light {
+:global(.light) .rocker {
   transform: rotateY(-15deg);
 }
 
-.rocker_dark {
+:global(.dark) .rocker {
   transform: rotateY(15deg);
 }
 
@@ -61,27 +61,23 @@
   border-radius: 3px;
 }
 
-.rocker_light::before {
-  background: linear-gradient(
-    to right,
-    rgba(0, 0, 0, 0.3) 0%,
-    rgba(0, 0, 0, 0) 40%,
-    rgba(255, 255, 255, 0.2) 60%,
-    rgba(255, 255, 255, 0.4) 100%
-  );
+:global(.light) .rocker::before {
+  background: linear-gradient(to right,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0) 40%,
+      rgba(255, 255, 255, 0.2) 60%,
+      rgba(255, 255, 255, 0.4) 100%);
   box-shadow:
     inset -2px 0 3px rgba(0, 0, 0, 0.2),
     2px 0 8px rgba(0, 0, 0, 0.3);
 }
 
-.rocker_dark::before {
-  background: linear-gradient(
-    to left,
-    rgba(0, 0, 0, 0.3) 0%,
-    rgba(0, 0, 0, 0) 40%,
-    rgba(255, 255, 255, 0.2) 60%,
-    rgba(255, 255, 255, 0.4) 100%
-  );
+:global(.dark) .rocker::before {
+  background: linear-gradient(to left,
+      rgba(0, 0, 0, 0.3) 0%,
+      rgba(0, 0, 0, 0) 40%,
+      rgba(255, 255, 255, 0.2) 60%,
+      rgba(255, 255, 255, 0.4) 100%);
   box-shadow:
     inset 2px 0 3px rgba(0, 0, 0, 0.2),
     -2px 0 8px rgba(0, 0, 0, 0.3);
@@ -94,7 +90,14 @@
   opacity: 0.6;
 }
 
-.icon_active {
+
+
+:global(.light) .sun_wrapper .icon {
+  opacity: 1;
+  transform: scale(1.1) translateZ(5px);
+}
+
+:global(.dark) .moon_wrapper .icon {
   opacity: 1;
   transform: scale(1.1) translateZ(5px);
 }

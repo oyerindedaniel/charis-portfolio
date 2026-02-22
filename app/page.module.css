@@ -35,12 +35,12 @@
 
 .title_h1 {
   max-width: 420px;
-  font-size: 36px;
-  font-weight: 600;
-  line-height: 1.2;
-  letter-spacing: normal;
+  font-size: 32px;
+  font-weight: 700;
+  line-height: 1.1;
+  letter-spacing: -0.06em;
   color: var(--text-primary);
-  font-family: var(--font-dancing-script);
+  font-family: var(--font-geist-sans);
   margin: 0;
 }
 
@@ -81,12 +81,12 @@
 
 .section_title {
   font-family: var(--font-geist-sans);
-  font-size: 11px;
-  font-weight: 500;
+  font-size: 13px;
+  font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.12em;
+  letter-spacing: 0.02em;
   color: var(--text-secondary);
-  margin-bottom: 24px;
+  margin-bottom: 16px;
 }
 
 .grid {

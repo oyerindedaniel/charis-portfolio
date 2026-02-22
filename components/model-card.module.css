@@ -139,7 +139,7 @@
   flex-direction: column;
   justify-content: center;
   gap: 12px;
-  padding: 32px;
+  padding: 32px 24px;
   flex-grow: 1;
 }
 
@@ -152,11 +152,11 @@
 }
 
 .title {
-  font-family: var(--font-instrument-serif);
-  font-size: 28px;
-  font-weight: 400;
+  font-family: var(--font-geist-sans);
+  font-size: 24px;
+  font-weight: 700;
   color: var(--text-primary);
-  letter-spacing: -0.01em;
+  letter-spacing: -0.03em;
 }
 
 .serial {
@@ -184,7 +184,6 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-top: 8px;
   transition: all 0.3s ease;
 }
 
@@ -251,7 +250,7 @@
   }
 
   .content {
-    padding: 24px;
+    padding: 24px 16px;
   }
 
   .title {

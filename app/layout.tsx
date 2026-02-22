@@ -19,12 +19,6 @@ const instrumentSerif = localFont({
   display: "swap",
 });
 
-const dancingScript = localFont({
-  src: "../public/fonts/dancing-script/dancing-script-variable.ttf",
-  variable: "--font-dancing-script",
-  display: "swap",
-});
-
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),
   title: {
@@ -63,7 +57,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${geistSans.variable} ${instrumentSerif.variable} ${dancingScript.variable}`}>
+      <body
+        className={`${geistSans.variable} ${instrumentSerif.variable}`}
+      >
         {process.env.NODE_ENV === "development" && (
           <Script
             src="https://unpkg.com/@oyerinde/caliper/dist/index.global.js"

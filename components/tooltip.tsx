@@ -32,7 +32,7 @@ export function Tooltip({ content, disabled, children }: TooltipProps) {
       setIsWarm(false);
       timerRef.current = setTimeout(() => {
         setIsHovered(true);
-      }, 400);
+      }, 300);
     }
   };
 
@@ -46,11 +46,13 @@ export function Tooltip({ content, disabled, children }: TooltipProps) {
     const forceHide = () => handleLeave();
     window.addEventListener("blur", forceHide);
     window.addEventListener("contextmenu", forceHide);
+    document.addEventListener("visibilitychange", forceHide);
 
     return () => {
       if (timerRef.current) clearTimeout(timerRef.current);
       window.removeEventListener("blur", forceHide);
       window.removeEventListener("contextmenu", forceHide);
+      document.removeEventListener("visibilitychange", forceHide);
     };
   }, []);
 

@@ -57,9 +57,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body
-        className={`${geistSans.variable} ${instrumentSerif.variable}`}
-      >
+      <body className={`${geistSans.variable} ${instrumentSerif.variable}`}>
         {process.env.NODE_ENV === "development" && (
           <Script
             src="https://unpkg.com/@oyerinde/caliper/dist/index.global.js"

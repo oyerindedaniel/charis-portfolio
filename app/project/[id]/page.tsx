@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     };
   }
 
-  const title = `${currentProject.title} | ${siteConfig.name}`;
+  const title = `${currentProject.title}`;
   const description = currentProject.description;
 
   return {
